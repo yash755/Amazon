@@ -25,7 +25,7 @@ driver = webdriver.Chrome(options=chrome_options, executable_path=ChromeDriverMa
 # line_count = 0
 
 
-with open('amazon51.csv') as csv_file:
+with open('amazon123.csv') as csv_file:
     try:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
