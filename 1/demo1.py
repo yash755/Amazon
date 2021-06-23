@@ -25,7 +25,7 @@ driver = webdriver.Chrome(options=chrome_options, executable_path=ChromeDriverMa
 # line_count = 0
 
 
-with open('amazon.csv') as csv_file:
+with open('amazon12.csv') as csv_file:
     try:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
@@ -60,25 +60,30 @@ with open('amazon.csv') as csv_file:
 
             if brand == '':
                 try:
-                    table_brand = html36.find('table',{'id':'productDetails_detailBullets_sections1'})
-
-                    print (table_brand)
-
-                    trs = table_brand.find_all('tr')
+                    trs = html36.find_all('tr')
 
                     for tr in trs:
                         tr_data = tr.text.strip()
                         print (tr_data)
 
+                        if 'Brand' in tr_data:
+                            if brand == '':
+                                brand = tr_data
+                                brand = brand.replace('Brand','')
+                                brand = brand.replace('\n','')
+
                         if 'Manufacturer' in tr_data:
-                            brand = tr_data
-                            brand = brand.replace('Manufacturer','')
-                            brand = brand.replace('\n','')
+                            if brand == '':
+                                brand = tr_data
+                                brand = brand.replace('Manufacturer','')
+                                brand = brand.replace('\n','')
 
 
 
                 except:
                     print ("eror")
+
+
 
 
 
