@@ -25,7 +25,7 @@ driver = webdriver.Chrome(options=chrome_options, executable_path=ChromeDriverMa
 # line_count = 0
 
 
-with open('amazon123.csv') as csv_file:
+with open('amazon.csv') as csv_file:
     try:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
@@ -40,6 +40,53 @@ with open('amazon123.csv') as csv_file:
 
             html31 = driver.page_source
             html36 = BeautifulSoup(html31, "lxml", from_encoding="utf-8")
+
+
+            brand = ''
+
+            try:
+                brand_a = html36.find('a',{'id':'bylineInfo'})
+                brand_a = brand_a.text.strip()
+
+                if 'Brand' in brand_a:
+                    brand = brand_a
+                    brand = brand.replace('Brand','')
+                    brand = brand.replace(':', '')
+
+            except:
+                print ("eror")
+
+
+
+            if brand == '':
+                try:
+                    table_brand = html36.find('table',{'id':'productDetails_detailBullets_sections1'})
+
+                    print (table_brand)
+
+                    trs = table_brand.find_all('tr')
+
+                    for tr in trs:
+                        tr_data = tr.text.strip()
+                        print (tr_data)
+
+                        if 'Manufacturer' in tr_data:
+                            brand = tr_data
+                            brand = brand.replace('Manufacturer','')
+                            brand = brand.replace('\n','')
+
+
+
+                except:
+                    print ("eror")
+
+
+
+            row.append(brand)
+
+
+
+
 
             try:
                 desc = html36.find('div', {'id': 'featurebullets_feature_div'})
@@ -78,24 +125,6 @@ with open('amazon123.csv') as csv_file:
 
             except:
                 print ('rtt')
-
-
-            # if text == '':
-            #
-            #     try:
-            #         description_1 = html36.find('div', {'id': 'prodDetails'})
-            #
-            #         if description_1.text.strip() != '':
-            #             text = os.linesep.join([s for s in description_1.text.strip().splitlines() if s])
-            #             row.append(text)
-            #
-            #
-            #
-            #     except:
-            #         print ('rtt')
-
-
-
 
 
             arr = []
