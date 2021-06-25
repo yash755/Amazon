@@ -25,7 +25,7 @@ driver = webdriver.Chrome(options=chrome_options, executable_path=ChromeDriverMa
 # line_count = 0
 
 
-with open('amazon.csv') as csv_file:
+with open('amazon12.csv') as csv_file:
     try:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
@@ -131,7 +131,7 @@ with open('amazon.csv') as csv_file:
 
             arr.append(row)
             print (arr)
-            with open('sydney5.csv', 'a+') as csvfile:
+            with open('sydney6.csv', 'a+') as csvfile:
                 csvwriter = csv.writer(csvfile)
                 csvwriter.writerows(arr)
 
