@@ -25,12 +25,12 @@ driver = webdriver.Chrome(options=chrome_options, executable_path=ChromeDriverMa
 # line_count = 0
 
 
-with open('amazon.csv') as csv_file:
+with open('book.csv') as csv_file:
     try:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
         for row in csv_reader:
-            print (row)
+            # print (row)
 
             url = row[0]
             url = url.replace('﻿https:', 'https:')
@@ -62,13 +62,13 @@ with open('amazon.csv') as csv_file:
                 try:
                     table_brand = html36.find('table',{'id':'productDetails_detailBullets_sections1'})
 
-                    print (table_brand)
+                    # print (table_brand)
 
                     trs = table_brand.find_all('tr')
 
                     for tr in trs:
                         tr_data = tr.text.strip()
-                        print (tr_data)
+                        # print (tr_data)
 
                         if 'Manufacturer' in tr_data:
                             brand = tr_data
@@ -99,7 +99,7 @@ with open('amazon.csv') as csv_file:
                 text = text.replace('by entering your model number.\n', '')
 
                 desc = text
-                print (desc)
+                # print (desc)
 
                 row.append(desc)
 
@@ -114,12 +114,19 @@ with open('amazon.csv') as csv_file:
             try:
                 description = html36.find('div',{'id':'productDescription'})
 
-                description_p = description.find('p')
+                # # print (description)
+                # description_p = description.find_all('p')
+                #
+                # print (description_p)
+                #
+                # data_text = ''
+                #
+                # for desc in description_p:
+                #     data_text = data_text + desc + '\n'
 
-                # if description.text.strip() != '':
-                text = os.linesep.join([s for s in description_p.text.strip().splitlines() if s])
-                print (text)
-                row.append(text)
+
+                print (description.text.strip())
+                row.append(description.text.strip())
 
 
 
@@ -130,7 +137,7 @@ with open('amazon.csv') as csv_file:
             arr = []
 
             arr.append(row)
-            print (arr)
+            # print (arr)
             with open('sydney5.csv', 'a+') as csvfile:
                 csvwriter = csv.writer(csvfile)
                 csvwriter.writerows(arr)
