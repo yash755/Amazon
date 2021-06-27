@@ -139,7 +139,7 @@ with open('unfinal.csv') as csv_file:
 
             arr.append(row)
             print (row)
-            with open('sydney5_12.csv', 'a+') as csvfile:
+            with open('sydney5_12_2.csv', 'a+') as csvfile:
                 csvwriter = csv.writer(csvfile)
                 csvwriter.writerows(arr)
 
