@@ -19,7 +19,7 @@ driver = webdriver.Chrome(options=chrome_options, executable_path=ChromeDriverMa
 
 count = 1
 
-with open('data.csv') as csv_file:
+with open('data1.csv') as csv_file:
     try:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
@@ -128,7 +128,7 @@ with open('data.csv') as csv_file:
 
             arr.append(row)
             print (row)
-            with open('2.csv', 'a+') as csvfile:
+            with open('2_2.csv', 'a+') as csvfile:
                 csvwriter = csv.writer(csvfile)
                 csvwriter.writerows(arr)
 

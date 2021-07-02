@@ -128,7 +128,7 @@ with open('data.csv') as csv_file:
 
             arr.append(row)
             print (row)
-            with open('1.csv', 'a+') as csvfile:
+            with open('1_1.csv', 'a+') as csvfile:
                 csvwriter = csv.writer(csvfile)
                 csvwriter.writerows(arr)
 
