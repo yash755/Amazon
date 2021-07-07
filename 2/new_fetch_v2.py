@@ -70,7 +70,7 @@ with open('data2.csv') as csv_file:
                             # print (tr_data)
 
                             if 'Brand' in tr_data:
-                                if brand != '':
+                                if brand == '':
                                     brand = tr_data
                                     brand = brand.replace('Brand', '')
                                     brand = brand.replace('\n', '')
@@ -80,7 +80,7 @@ with open('data2.csv') as csv_file:
                                     break
 
                             if 'Manufacturer' in tr_data:
-                                if brand != '':
+                                if brand == '':
                                     brand = tr_data
                                     brand = brand.replace('Manufacturer','')
                                     brand = brand.replace('\n','')
